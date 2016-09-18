@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <conio.h>
 
+//definindo variavel para registro de estudantes
 typedef struct {
 int cpf;
 char nome[50];
@@ -10,23 +11,27 @@ char sexo;
 float notas[4];
 } TESTUDANTE;
 
+// definindo variaveis globais
 int nroMaxAlunos=50;
 int codCadastro;
 TESTUDANTE aluno[50];
 TESTUDANTE est;
 
+// funcoes auxiliares
 void menu();
 int buscaEstudante();
 void lerAluno();
 void gravarAluno();
 void addMenu();
 
+// funcao principal
 int main(){
     setlocale(LC_ALL, "portuguese");
     addMenu();
     return 0;
 }
 
+// exibe menu de opcoes
 void menu (){
 printf("============================================\n");
 printf("\t\tMenu\t\t\n");
@@ -44,11 +49,13 @@ printf ("10. Mostrar os registros ordenados pela média\n");
 printf ("0. Sair do programa\n");
 }
 
+// grava o registro do estudante
 void gravarAluno(TESTUDANTE registrar){
     aluno[codCadastro] = registrar;
     codCadastro++;
 }
 
+// confere se a matricula ja foi registrada
 int buscaEstudante(TESTUDANTE mat){
     int i;
     for (i=0; i<nroMaxAlunos ; i++)
@@ -57,6 +64,7 @@ int buscaEstudante(TESTUDANTE mat){
     return -1;
 }
 
+//leitura dos dados do aluno
 void lerAluno(){
     printf("Digite o CPF:\n");
     scanf("%d", &est.cpf);
@@ -79,6 +87,7 @@ void lerAluno(){
     }
 }
 
+// adicao de alunos
 void addMenu(){
     menu();
     int opcao;
