@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1474202859 source:c:\users\luisfernando\onedrive\ufs_fernando\arq_codeblocks\miniprojeto\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
