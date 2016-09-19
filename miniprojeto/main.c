@@ -50,8 +50,8 @@ printf ("0. Sair do programa\n");
 }
 
 /* grava o registro do estudante */
-void gravarAluno(TESTUDANTE registrar){
-    aluno[codCadastro] = registrar;
+void gravarAluno(TESTUDANTE registrar, int a){
+    aluno[a] = registrar;
     codCadastro++;
 }
 
@@ -82,7 +82,7 @@ void lerAluno(){
             int i;
             for (i=0; i<4; i++)
                 scanf("%f", &est.notas[i]);
-            gravarAluno(est);
+            gravarAluno(est, codCadastro);
             printf("\nCadastrado realizado com sucesso\n");
     }
 }
@@ -109,11 +109,29 @@ void apagaRegistro(){
         if (aluno[i].cpf == a.cpf) {
                 for( ; i<codCadastro-1 ; i++) aluno[i]=aluno[i+1];
                 codCadastro--;
+            }
+    }
+    printf("\n Registro apagado \n");
+}
+
+void altRegistro(){
+    printf("\n Qual matricula deseja alterar?\n\n");
+    scanf("%d", &est.cpf);
+    int i;
+    for (i=0; i<codCadastro; i++){
+        if (aluno[i].cpf == est.cpf) {
+            printf("\nDigite o nome do aluno:\n");
+            scanf("%s", est.nome);
+            printf("\nDigite o sexo: H ou M\n");
+            est.sexo=getche();
+            printf("\nDigite as Notas:\n");
+            int j;
+            for (j=0; j<4; j++) scanf("%f", &est.notas[j]);
+            gravarAluno(est, i);
+            codCadastro--;
+            printf("\nCadastrado alterado com sucesso\n");
         }
     }
-    printf("\n%d cpf %s nome %s sexo %f N1 %f N2 %f N3 %f N4\n",
-           aluno[i].cpf, aluno[i].nome[50], aluno[i].sexo,
-           aluno[i].notas[0], aluno[i].notas[1], aluno[i].notas[2], aluno[i].notas[3]);
 }
 
 /* Menu de seleção */
@@ -127,7 +145,7 @@ void addMenu(){
                 case 0: return 0;
                 case 1: lerAluno(); break;
                 case 2: apagaRegistro(); break;
-                case 3: printf("\n opcao 3 em construcao\n\n"); break;
+                case 3: altRegistro(); break;
                 case 4: veRegistro(); break;
                 case 5: printf("\n opcao 5 em construcao\n\n"); break;
                 case 6: printf("\n opcao 6 em construcao\n\n"); break;
