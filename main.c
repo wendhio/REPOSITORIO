@@ -101,17 +101,21 @@ void veRegistro(){
 }
 
 void apagaRegistro(){
-    TESTUDANTE a;
     printf("\nQual registro deseja apagar:\n\n");
-    scanf("%d", &a.cpf);
-    int i;
-    for (i=0; i<codCadastro; i++){
-        if (aluno[i].cpf == a.cpf) {
-                for( ; i<codCadastro-1 ; i++) aluno[i]=aluno[i+1];
+    scanf("%d", &est.cpf);
+    int i = buscaEstudante(est);
+    if ( i != -1 )
+        {
+        int j;
+        for (j=0; j<codCadastro; j++){
+            if (aluno[j].cpf == est.cpf) {
+                for(i=j ; i<codCadastro-1 ; i++) aluno[i]=aluno[i+1];
                 codCadastro--;
             }
-    }
+        }
     printf("\n Registro apagado \n");
+    }
+    else printf("\n Registro nao existe\n");
 }
 
 void altRegistro(){
@@ -150,7 +154,7 @@ void addMenu(){
                 case 5: printf("\n opcao 5 em construcao\n\n"); break;
                 case 6: printf("\n opcao 6 em construcao\n\n"); break;
                 case 7: printf("\n opcao em construcao\n\n"); break;
-                case 8: printf("\n opcao em construcao\n\n"); break;
+                case 8: verMatAluno(); break;
                 case 9: printf("\n opcao em construcao\n\n"); break;
                 case 10: printf("\n opcao em construcao\n\n"); break;
                 default: printf("\n DIGITE UMA OPCAO VALIDA!\n\n"); break;
@@ -159,4 +163,35 @@ void addMenu(){
             printf("\n Digite a opção desejada do MENU\n\n");
             scanf("%d", &opcao);
             }
+}
+
+void verMatAluno(){
+    printf("\n Qual matricula deseja visualisar?\n");
+    scanf("%d", &est.cpf);
+    int i = buscaEstudante(est);
+    if ( i != -1 ){
+        if (aluno[j].cpf == est.cpf) {
+            printf("CPF: %d  ", aluno[i].cpf);
+            printf("NOME: %s  ", aluno[i].nome);
+            printf("SEXO: %c  ", aluno[i].sexo);
+            printf("NOTA 1: %f  ", aluno[i].notas[0]);
+            printf("NOTA 2: %f  ", aluno[i].notas[1]);
+            printf("NOTA 3: %f  ", aluno[i].notas[2]);
+            printf("NOTA 4: %f\n", aluno[i].notas[3]);
+        }
+    }
+    else printf("\n Registro nao existe\n");
+
+    int i;
+    for (i=0; i<codCadastro; i++){
+        if (aluno[i].cpf == est.cpf) {
+            printf("CPF: %d  ", aluno[i].cpf);
+            printf("NOME: %s  ", aluno[i].nome);
+            printf("SEXO: %c  ", aluno[i].sexo);
+            printf("NOTA 1: %f  ", aluno[i].notas[0]);
+            printf("NOTA 2: %f  ", aluno[i].notas[1]);
+            printf("NOTA 3: %f  ", aluno[i].notas[2]);
+            printf("NOTA 4: %f\n", aluno[i].notas[3]);
+        }
+    }
 }
